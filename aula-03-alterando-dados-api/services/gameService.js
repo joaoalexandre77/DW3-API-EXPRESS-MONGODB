@@ -40,6 +40,19 @@ class gameService {
             console.log(error);
         }
     }
+
+    async update(id, title, year, platform, price) {
+        try {
+            await Game.findByIdAndUpdate(id, {
+                title,
+                year,
+                platform,
+                price
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
 
 

@@ -49,5 +49,21 @@ const deleteGame = async (req, res) => {
         res.status(500).json({error: "Erro interno do servidor"});
     }
 }
+
+const updateGame = async (req, res) => {
+    try {
+        const id = req.params.id;
+        if(ObjectId.isValid(id)) {
+            const {title, year, platform, price} = req.body;
+            await gameService.update(id, title, year, platform, price);
+            res.status(200).json({Message: "Registro alterado"});
+        } else {
+            res.status(400).json({error: "Requisição mal formada, ID Inválido"});
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({error: "Erro interno do servidor"});
+    }
+}
 // Exportando as funções
-export default { getAllGames, createGame, deleteGame }
+export default { getAllGames, createGame, deleteGame, updateGame }

@@ -12,4 +12,6 @@ gameRoutes.post("/games", gameController.createGame);
 
 gameRoutes.delete("/games/:id", gameController.deleteGame);
 
+gameRoutes.put("/games/:id", gameController.updateGame);
+
 export default gameRoutes;
