@@ -40,6 +40,8 @@ const deleteGame = async (req, res) => {
         if(ObjectId.isValid(id)){
             await gameService.Delete(id);
             res.sendStatus(204);
+        } else {
+            res.status(400).json({error: "Requisição mal formada, ID Inválido"});
         }
 
     } catch (error) {

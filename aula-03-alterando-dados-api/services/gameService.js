@@ -34,7 +34,7 @@ class gameService {
 
     async Delete(id) {
         try {
-            await Game.findByIdAndDelete()
+            await Game.findByIdAndDelete(id)
             //O mpetodo findByIdAndDelete() do mongoose busca um registro pela ID e deleta
         } catch (error) {
             console.log(error);
