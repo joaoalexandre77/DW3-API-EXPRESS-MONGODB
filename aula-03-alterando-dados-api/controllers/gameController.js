@@ -65,5 +65,24 @@ const updateGame = async (req, res) => {
         res.status(500).json({error: "Erro interno do servidor"});
     }
 }
+
+const getOneGame = async (req, res) => {
+    try {
+        const id = req.params.id;
+        if(ObjectId.isValid(id)) {
+            const game = await gameService.getOne(id);
+            if(!game) {
+                res.status(404).json({error: "jogo não encontrado"});
+            } else {
+                res.status(200).json({game});
+            }
+        } else {
+            res.status(400).json({error: "O ID informado é inválido"});
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({error: "Erro interno do servidor."});
+    }    
+}
 // Exportando as funções
-export default { getAllGames, createGame, deleteGame, updateGame }
+export default { getAllGames, createGame, deleteGame, updateGame, getOneGame }
